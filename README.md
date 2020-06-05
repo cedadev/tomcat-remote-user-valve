@@ -1,6 +1,6 @@
 # Tomcat remote user Valve
 
-A Valve providing Web-server-provided authentication for a Tomcat server. Required Tomcat 8.5.
+A [Valve](https://tomcat.apache.org/tomcat-7.0-doc/config/valve.html) providing Web-server-provided authentication for a Tomcat server. Required Tomcat 8.5.
 
 The Valve can be used to authenticate requests in Tomcat based on the presence of a REMOTE_USER or X_REMOTE_USER header in the
 request (when both headers are present, REMOTE_USER is preferred). The authenticated user can also be assigned roles by attaching
@@ -12,13 +12,13 @@ Existing users defined in the `tomcat-users.xml` file will be ignored. Separate 
 
 1. Place the Valve's .jar file inside the `lib` directory of your Tomcat server installation.
 
-2. Add the following to the "\<Context\>" element of your web application's `context.xml` file:
+2. Add the following to the **\<Context\>** element of your web application's `context.xml` file:
 
 ```xml
     <Valve className="uk.ac.ceda.valves.RemoteUserAuthenticator" />
 ```
 
-3. Ensure that your "\<web-app\>" in `web.xml` has been configured with appropriate security constraints.
+3. Ensure that your **\<web-app\>** in `web.xml` has been configured with appropriate security constraints.
 
    Here is an example:
 
