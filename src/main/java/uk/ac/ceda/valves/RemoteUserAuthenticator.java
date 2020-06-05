@@ -90,7 +90,7 @@ public class RemoteUserAuthenticator extends AuthenticatorBase
 
         // Retrieve username from the request preferring the first available header
         String username = null;
-        for (String header : RemoteUserAuthenticator.USERNAME_HEADERS)
+        for (String header : USERNAME_HEADERS)
         {
             username = request.getHeader(header);
             if (isValidUsername(username))
@@ -101,19 +101,25 @@ public class RemoteUserAuthenticator extends AuthenticatorBase
         if (isValidUsername(username))
         {
             // Get all roles associated with this user from the request
-            List<String> roles = Collections
-                    .list(request.getHeaders(RemoteUserAuthenticator.ROLES_HEADER));
+            List<String> roles = Collections.list(request.getHeaders(ROLES_HEADER));
 
             if (log.isDebugEnabled())
                 log.debug(String.format("Found remote user '%s' with roles: %s", username, roles));
 
             // Create a new principal to represent the remote user
             principal = new GenericPrincipal(username, null, roles);
-            register(request, response, principal, RemoteUserAuthenticator.AUTH_METHOD, username,
-                    null);
+            register(request, response, principal, AUTH_METHOD, username, null);
 
             return true;
         }
+
+        // Send an "unauthorized" response and an appropriate challenge
+        String realmName = loginConfig.getRealmName();
+        if (realmName == null)
+            realmName = REALM_NAME;
+
+        response.setHeader(AUTH_HEADER_NAME, String.format("Basic realm='%s'", realmName));
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
 
         return false;
     }
@@ -132,7 +138,7 @@ public class RemoteUserAuthenticator extends AuthenticatorBase
     @Override
     protected String getAuthMethod()
     {
-        return RemoteUserAuthenticator.AUTH_METHOD;
+        return AUTH_METHOD;
     }
 
 }
