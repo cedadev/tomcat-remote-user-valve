@@ -6,7 +6,7 @@ The Valve can be used to authenticate requests in Tomcat based on the presence o
 request (when both headers are present, REMOTE_USER is preferred). The authenticated user can also be assigned roles by attaching
 them with an X_REMOTE_USER_ROLES header.
 
-Existing users defined in the `tomcat-users.xml` file will be ignored. Separate users with separate groups are created instead.
+Existing users defined in the `tomcat-users.xml` file will be ignored. Separate users with separate roles are created instead.
 
 ## How to use
 
