@@ -1,6 +1,6 @@
 # Tomcat remote user Valve
 
-A [Valve](https://tomcat.apache.org/tomcat-7.0-doc/config/valve.html) providing Web-server-provided authentication for a Tomcat server. Required Tomcat 8.5.
+A [Valve](https://tomcat.apache.org/tomcat-7.0-doc/config/valve.html) providing Web-server-provided authentication for a Tomcat server. Requires Tomcat 8.5 minimum.
 
 The Valve can be used to authenticate requests in Tomcat based on the presence of a REMOTE_USER or X_REMOTE_USER header in the
 request (when both headers are present, REMOTE_USER is preferred). The authenticated user can also be assigned roles by attaching
