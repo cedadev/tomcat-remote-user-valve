@@ -12,13 +12,13 @@ Existing users defined in the `tomcat-users.xml` file will be ignored. Separate 
 
 1. Place the Valve's .jar file inside the `lib` directory of your Tomcat server installation.
 
-2. Add the following to the "<Context>" element of your web application's `context.xml` file:
+2. Add the following to the "\<Context\>" element of your web application's `context.xml` file:
 
 ```xml
     <Valve className="uk.ac.ceda.valves.RemoteUserAuthenticator" />
 ```
 
-3. Ensure that your "<web-app>" in `web.xml` has been configured with an appropriate security constraints. Here is an example:
+3. Ensure that your "\<web-app\>" in `web.xml` has been configured with an appropriate security constraints. Here is an example:
 
 ```xml
     <security-constraint>
