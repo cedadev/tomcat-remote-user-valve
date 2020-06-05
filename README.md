@@ -1,2 +1,3 @@
-# tomcat-valves
-Utility Valves for Tomcat servers
+# Tomcat remote user Valve
+
+A Valve for Web-server-provided authentication in Tomcat.
