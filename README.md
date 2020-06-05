@@ -10,7 +10,7 @@ Existing users defined in the `tomcat-users.xml` file will be ignored. Separate 
 
 ## How to use
 
-1. Place the Valve's .jar file inside the `lib` directory of your Tomcat server installation.
+1. Place the Valve's [.jar file](https://github.com/cedadev/tomcat-remote-user-valve/releases) inside the `lib` directory of your Tomcat server installation.
 
 2. Add the following to the **\<Context\>** element of your web application's `context.xml` file:
 
