@@ -18,7 +18,9 @@ Existing users defined in the `tomcat-users.xml` file will be ignored. Separate 
     <Valve className="uk.ac.ceda.valves.RemoteUserAuthenticator" />
 ```
 
-3. Ensure that your "\<web-app\>" in `web.xml` has been configured with an appropriate security constraints. Here is an example:
+3. Ensure that your "\<web-app\>" in `web.xml` has been configured with an appropriate security constraints.
+
+   Here is an example:
 
 ```xml
     <security-constraint>
