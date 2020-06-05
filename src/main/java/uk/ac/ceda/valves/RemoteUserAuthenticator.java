@@ -39,7 +39,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.authenticator.AuthenticatorBase;
 import org.apache.catalina.connector.Request;
-import org.apache.catalina.deploy.LoginConfig;
 import org.apache.catalina.realm.GenericPrincipal;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -69,14 +68,12 @@ public class RemoteUserAuthenticator extends AuthenticatorBase
      *
      * @param request  Request we are processing
      * @param response Response we are creating
-     * @param config   Login configuration describing how authentication should be
-     *                 performed
      *
      * @exception IOException if an input/output error occurs
      */
     @Override
-    public boolean authenticate(Request request, HttpServletResponse response,
-            LoginConfig loginConfig) throws IOException
+    protected boolean doAuthenticate(Request request, HttpServletResponse response)
+            throws IOException
     {
         // Have we already authenticated someone?
         Principal principal = ((HttpServletRequest) request.getRequest()).getUserPrincipal();
@@ -114,11 +111,7 @@ public class RemoteUserAuthenticator extends AuthenticatorBase
         }
 
         // Send an "unauthorized" response and an appropriate challenge
-        String realmName = loginConfig.getRealmName();
-        if (realmName == null)
-            realmName = REALM_NAME;
-
-        response.setHeader(AUTH_HEADER_NAME, String.format("Basic realm='%s'", realmName));
+        response.setHeader(AUTH_HEADER_NAME, String.format("Remote user realm='%s'", REALM_NAME));
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
 
         return false;
